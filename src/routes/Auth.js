@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 const Auth = () => {
-  const [emaile, setEmaile] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const onChange = (event) => {
     const {
       target: { name, value },
     } = event;
-    if (name === "emaile") {
-      setEmaile(value);
+    if (name === "email") {
+      setEmail(value);
     } else if (name === "password") {
       setPassword(value);
     }
@@ -16,15 +16,16 @@ const Auth = () => {
   const onSubmit = (event) => {
     event.preventDefault();
   };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
         <input
-          name="emaile"
-          type="text"
+          name="email"
+          type="email"
           placeholder="Email"
           required
-          value={emaile}
+          value={email}
           onChange={onChange}
         />
         <input
