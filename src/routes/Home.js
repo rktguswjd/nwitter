@@ -6,6 +6,7 @@ const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
 
+  // onSnapshot을 사용해 데이터베이스의 알림을 받는 listener의 역할
   useEffect(() => {
     dbService.collection("nweets").onSnapshot((snapshot) => {
       const nweetArray = snapshot.docs.map((doc) => ({
@@ -46,6 +47,10 @@ const Home = ({ userObj }) => {
         <input type="submit" value="Nweet" />
       </form>
       <div>
+        {/* 
+          nweetObj는 nweet의 모든 데이터 => author, text createdAt 등
+          isOwner는 다이나믹한 prop => true or false, nweet을 만든사람(nweet.creatorId)과 userObj.uid가 같으면 true
+        */}
         {nweets.map((nweet) => (
           <Nweet
             key={nweet.id}

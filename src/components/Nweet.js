@@ -2,7 +2,9 @@ import { dbService } from "fbase";
 import React, { useState } from "react";
 
 const Nweet = ({ nweetObj, isOwner }) => {
+  // editing은 기본적으로 nweet을 수정하고 있는지 아닌지를 뜻함
   const [editing, setEditing] = useState(false);
+  // newNweet, setNweNweet은 input의 값을 수정할 수 있음
   const [newNweet, setNewNweet] = useState(nweetObj.text);
 
   const onDeleteClick = async () => {
@@ -12,7 +14,9 @@ const Nweet = ({ nweetObj, isOwner }) => {
       await dbService.doc(`nweets/${nweetObj.id}`).delete();
     }
   };
+
   const toggleEditing = () => setEditing((prev) => !prev);
+
   const onSubmit = async (event) => {
     event.preventDefault();
     await dbService.doc(`nweets/${nweetObj.id}`).update({
@@ -20,6 +24,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
     });
     setEditing(false);
   };
+
   const onChange = (event) => {
     const {
       target: { value },
